@@ -19,4 +19,5 @@ return [
     'users' => 'Users',
     'barbers' => 'Barbers',
     'services' => 'Services',
+    'clients' => 'Clients',
 ];

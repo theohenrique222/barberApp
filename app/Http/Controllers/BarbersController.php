@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Barber;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class BarbersController extends Controller
@@ -12,7 +13,9 @@ class BarbersController extends Controller
      */
     public function index()
     {
-        return view('auth.admin.barbers.index');
+        $users = User::where('role', 'barber')->get();
+        
+        return view('auth.admin.barbers.index', compact('users'));
     }
 
     /**

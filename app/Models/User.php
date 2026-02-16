@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role'
     ];
 
     /**
@@ -38,6 +39,19 @@ class User extends Authenticatable
      *
      * @return array<string, string>
      */
+
+    public function isAdmin(): bool
+    {
+        return $this->role === 'admin';
+    }
+    public function isClient(): bool
+    {
+        return $this->role === 'client';
+    }
+    public function isBarber(): bool
+    {
+        return $this->role === 'barber';
+    }
     protected function casts(): array
     {
         return [

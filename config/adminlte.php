@@ -315,11 +315,19 @@ return [
             'type' => 'sidebar-menu-search',
             'text' => 'search',
         ],
+        [
+            'text' => 'dashboard',
+            'url' => 'dashboard',
+            'icon' => 'fas fa-fw fa-tachometer-alt',
+
+        ],
         ['header' => 'account_settings'],
         [
             'text' => 'users',
-            'url' => '/',
+            'url' => 'users',
             'icon' => 'fas fa-fw fa-user',
+            'can' => 'isAdmin',
+
         ],
         [
             'text' => 'barbers',
@@ -327,9 +335,10 @@ return [
             'icon' => 'fas fa-fw fa-user',
         ],
         [
-            'text' => 'clientes',
+            'text' => 'clients',
             'url' => 'clients',
             'icon' => 'fas fa-fw fa-user',
+            'can' => ['isAdmin', 'isBarber'],
         ],
         
         ['header' => 'Services'],
@@ -337,12 +346,18 @@ return [
             'text' => 'Services',
             'url' => 'services',
             'icon' => 'fas fa-fw fa-cogs',
+            'can' => 'isAdmin',
         ],
         [
             'text' => 'Appointments',
             'url' => 'appointments',
             'icon' => 'fas fa-fw fa-calendar',
         ],
+        [
+            'text' => 'Schedules',
+            'url' => 'schedules',
+            'icon' => 'fas fa-fw fa-calendar',
+        ]
         
     ],
 

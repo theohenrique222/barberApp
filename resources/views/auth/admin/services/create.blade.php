@@ -14,5 +14,5 @@
         <x-adminlte-input name="price" label="Preço do serviço" type="text" placeholder="Preço do serviço" />
         <x-adminlte-button label="Salvar" theme="success" type="submit" class="btn-flat" icon="fas fa-lg fa-save" />
     </div>
-
+</form>
 @stop
