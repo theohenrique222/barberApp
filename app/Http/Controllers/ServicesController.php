@@ -12,7 +12,8 @@ class ServicesController extends Controller
      */
     public function index()
     {
-        //
+        $services = Service::all();
+        return view('auth.admin.services.index', compact('services'));
     }
 
     /**
@@ -20,7 +21,7 @@ class ServicesController extends Controller
      */
     public function create()
     {
-        //
+        return view('auth.admin.services.create');
     }
 
     /**
@@ -28,7 +29,15 @@ class ServicesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'price' => 'required|numeric',
+        ]);
+
+        Service::create($request->all());
+
+        return redirect()->route('services.index')->with('success', 'Serviço criado com sucesso!');
     }
 
     /**
@@ -44,7 +53,7 @@ class ServicesController extends Controller
      */
     public function edit(Service $service)
     {
-        //
+        return view('auth.admin.services.edit', compact('service'));
     }
 
     /**
@@ -52,7 +61,15 @@ class ServicesController extends Controller
      */
     public function update(Request $request, Service $service)
     {
-        //
+        $data = $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'price' => 'required|numeric',
+        ]);
+
+        $service->update($data);
+
+        return redirect()->route('services.index')->with('success', 'Serviço atualizado com sucesso!');
     }
 
     /**
@@ -60,6 +77,7 @@ class ServicesController extends Controller
      */
     public function destroy(Service $service)
     {
-        //
+        $service->delete();
+        return redirect()->route('services.index')->with('success', 'Serviço deletado com sucesso!');
     }
 }

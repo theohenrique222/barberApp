@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\AppointmentsController;
+use App\Http\Controllers\BarbersController;
+use App\Http\Controllers\ServicesController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -8,4 +11,8 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::middleware(['auth'])->group(function () {
+    Route::resource('services', ServicesController::class);
+    Route::resource('barbers', BarbersController::class);
+    Route::resource('appointments', AppointmentsController::class);
+});

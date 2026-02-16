@@ -12,7 +12,7 @@ class BarbersController extends Controller
      */
     public function index()
     {
-        //
+        return view('auth.admin.barbers.index');
     }
 
     /**
@@ -20,7 +20,7 @@ class BarbersController extends Controller
      */
     public function create()
     {
-        //
+        return view('auth.admin.barbers.create');
     }
 
     /**
