@@ -9,7 +9,8 @@ class Appointment extends Model
     protected $fillable = [
         'user_id', 
         'barber_id', 
-        'service_id'
+        'service_id',
+        'appointment_time',
     ];
     public function user()
     {

@@ -10,4 +10,6 @@
     <p>Welcome to this beautiful admin panel.</p>
 
     {{ auth()->user()->isClient() ? 'You are a client.' : '' }}
+    {{ auth()->user()->isBarber() ? 'You are a barber.' : '' }}
+    {{ auth()->user()->isAdmin() ? 'You are an admin.' : '' }}
 @stop

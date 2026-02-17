@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Appointment;
+use App\Models\Service;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AppointmentsController extends Controller
@@ -12,7 +14,7 @@ class AppointmentsController extends Controller
      */
     public function index()
     {
-        //
+        return view('auth.admin.appointment.index');
     }
 
     /**
@@ -20,7 +22,11 @@ class AppointmentsController extends Controller
      */
     public function create()
     {
-        //
+        $clients = User::where('role', 'client')->get();
+        $barbers = User::where('role', 'barber')->get();
+        $services = Service::all();
+
+        return view('auth.admin.appointment.create', compact('clients', 'barbers', 'services'));
     }
 
     /**
@@ -28,7 +34,18 @@ class AppointmentsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request->all());
+        $request->validate([
+            'user_id' => 'required|exists:users,id',
+            'barber_id' => 'required|exists:users,id',
+            'service_id' => 'required|exists:services,id',
+            'appointment_time' => 'required|date_format:Y-m-d\TH:i',
+        ]);
+
+
+        Appointment::create($request->all());
+
+        return redirect()->route('appointments.index')->with('success', 'Appointment created successfully.');
     }
 
     /**

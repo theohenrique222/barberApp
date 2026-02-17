@@ -13,8 +13,30 @@ class UserController extends Controller
     public function index()
     {
         $users = User::all();
+        $heads = [
+            'ID',
+            'Name',
+            'E-mail',
+            'Cargo',
+            'Actions',
+        ];
 
-        return view('auth.admin.users.index', compact('users'));
+        $btnEdit = '<button class="btn btn-xs btn-default text-primary mx-1 shadow" title="Edit">
+                            <i class="fa fa-lg fa-fw fa-pen"></i>
+                        </button>';
+        $btnDelete = '<button class="btn btn-xs btn-default text-danger mx-1 shadow" title="Delete">
+                              <i class="fa fa-lg fa-fw fa-trash"></i>
+                          </button>';
+        $btnDetails = '<button class="btn btn-xs btn-default text-teal mx-1 shadow" title="Details">
+                               <i class="fa fa-lg fa-fw fa-eye"></i>
+                           </button>';
+
+        $config = [
+            'order' => [[1, 'asc']],
+            'columns' => [null, null, null, ['orderable' => false]],
+        ];
+
+        return view('auth.admin.users.index', compact('users', 'heads', 'config'));
     }
 
     /**
@@ -30,7 +52,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        
+
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
