@@ -13,7 +13,28 @@ class ServicesController extends Controller
     public function index()
     {
         $services = Service::all();
-        return view('auth.admin.services.index', compact('services'));
+        $heads = [
+            'ID',
+            'Name',
+            'Price',
+            'Description',
+            'Actions',
+        ];
+    
+        $btnEdit = '<button class="btn btn-xs btn-default text-primary mx-1 shadow" title="Edit">
+                                <i class="fa fa-lg fa-fw fa-pen"></i>
+                            </button>';
+        $btnDelete = '<button class="btn btn-xs btn-default text-danger mx-1 shadow" title="Delete">
+                                  <i class="fa fa-lg fa-fw fa-trash"></i>
+                              </button>';
+        $btnDetails = '<button class="btn btn-xs btn-default text-teal mx-1 shadow" title="Details">
+                                   <i class="fa fa-lg fa-fw fa-eye"></i>
+                               </button>';
+        $config = [
+            'order' => [[1, 'asc']],
+            'columns' => [null, null, null, ['orderable' => false]],
+        ];
+        return view('auth.admin.services.index', compact('services', 'heads', 'config'));
     }
 
     /**

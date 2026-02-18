@@ -17,4 +17,12 @@ class Barber extends Model
     {
         return $this->belongsToMany(Service::class);
     }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+    public function schedules()
+    {
+        return $this->hasMany(Schedule::class);
+    }
 }

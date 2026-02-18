@@ -39,7 +39,8 @@ class AppointmentsController extends Controller
             'user_id' => 'required|exists:users,id',
             'barber_id' => 'required|exists:users,id',
             'service_id' => 'required|exists:services,id',
-            'appointment_time' => 'required|date_format:Y-m-d\TH:i',
+            'schedule_id' => 'required|exists:schedule,id',
+            'status' => 'required',
         ]);
 
 

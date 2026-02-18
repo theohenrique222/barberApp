@@ -16,7 +16,8 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('users');
             $table->foreignId('barber_id')->constrained('barbers');
             $table->foreignId('service_id')->constrained('services');
-            $table->foreignId('schedule_id')->constrained('schedules');
+            $table->foreignId('schedule_id')->constrained();
+            $table->enum('status', ['pending', 'confirmed', 'cancelled'])->default('pending');
             $table->timestamps();
         });
     }

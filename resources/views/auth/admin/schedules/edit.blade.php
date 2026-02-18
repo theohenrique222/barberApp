@@ -18,15 +18,15 @@
         </x-adminlte-select>
     </div>
     <div class="form-group">
-        <x-adminlte-input name="date" label="Data" type="date"/>
+        <x-adminlte-input name="date" label="Data" type="date" value="{{ $schedule->date->format('Y-m-d') }}"/>
     </div>
     <div class="form-group">
     </div>
     <div class="form-group">
-        <x-adminlte-input name="start_time" label="Inicio do Expediente" type="time"/>
-    </div>
-    <div class="form-group">
-        <x-adminlte-input name="end_time" label="Final de Expediente" type="time"/>
+        <x-adminlte-input name="start_time" label="Inicio do Expediente" type="time" value="{{ $schedule->start_time->format('H:i') }}"/>
+        </div>
+        <div class="form-group">
+            <x-adminlte-input name="end_time" label="Final de Expediente" type="time" value="{{ $schedule->end_time->format('H:i') }}"/>
     </div>
     <div class="form-group">
         <x-adminlte-input name="interval_minutes" label="Intervalo entre horários" type="number" value="30"/>
@@ -35,4 +35,7 @@
     <x-adminlte-button type="submit" label="Salvar" theme="success" icon="fas fa-thumbs-up"/>
 </form>
 
+
+    
+    
 @stop

@@ -5,6 +5,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AppointmentsController;
 use App\Http\Controllers\BarbersController;
 use App\Http\Controllers\ServicesController;
+use App\Http\Controllers\SchedulesController;
 use Illuminate\Support\Facades\Route;
 
 Route::redirect('/', '/login');
@@ -20,5 +21,5 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('services', ServicesController::class);
     Route::resource('barbers', BarbersController::class);
     Route::resource('appointments', AppointmentsController::class);
-    Route::resource('schedules', AppointmentsController::class);
+    Route::resource('schedules', SchedulesController::class);
 });
