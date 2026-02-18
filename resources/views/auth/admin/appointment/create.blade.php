@@ -19,12 +19,11 @@
         </select>
     </div>
     <div class="form-group">
-        <label for="barber_id">Barbeiro</label>
-        <select name="barber_id" id="barber_id" class="form-control">
-            @foreach($barbers as $barber)
-                <option value="{{ $barber->id }}">{{ $barber->name }}</option>
+        <x-adminlte-select name="barber_id" label="Barbeiro">
+            @foreach ($barbers as $barber)
+                <option value="{{ $barber->id }}">{{ $barber->user->name }}</option>
             @endforeach
-        </select>
+        </x-adminlte-select>
     </div>
     <div class="form-group">
         <label for="service_id">Serviço</label>
@@ -35,8 +34,11 @@
         </select>
     </div>
     <div class="form-group">
-        <label for="appointment_time">Data e Hora</label>
-        <input type="datetime-local" name="appointment_time" id="appointment_time" class="form-control">
+        <x-adminlte-select name="is_avaliable" label="Horários Disponíveis">
+            @foreach ($schedules as $schedule)
+                <option value="1">{{ $schedule->start_time->format('H:i') }}</option>
+            @endforeach
+        </x-adminlte-select>
     </div>
     <button type="submit" class="btn btn-primary">Agendar</button>
 </form>

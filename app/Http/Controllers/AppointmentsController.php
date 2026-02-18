@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Appointment;
+use App\Models\Barber;
+use App\Models\Schedule;
 use App\Models\Service;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -23,10 +25,11 @@ class AppointmentsController extends Controller
     public function create()
     {
         $clients = User::where('role', 'client')->get();
-        $barbers = User::where('role', 'barber')->get();
+        $barbers = Barber::all();
         $services = Service::all();
+        $schedules = Schedule::with('barber')->get();
 
-        return view('auth.admin.appointment.create', compact('clients', 'barbers', 'services'));
+        return view('auth.admin.appointment.create', compact('clients', 'barbers', 'services', 'schedules'));
     }
 
     /**
@@ -34,15 +37,16 @@ class AppointmentsController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
         $request->validate([
             'user_id' => 'required|exists:users,id',
             'barber_id' => 'required|exists:users,id',
             'service_id' => 'required|exists:services,id',
             'schedule_id' => 'required|exists:schedule,id',
+            'is_avaliable' => 'required|boolean',
             'status' => 'required',
         ]);
 
+        dd($request->all());
 
         Appointment::create($request->all());
 
