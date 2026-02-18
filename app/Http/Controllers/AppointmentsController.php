@@ -27,7 +27,7 @@ class AppointmentsController extends Controller
         $clients = User::where('role', 'client')->get();
         $barbers = Barber::all();
         $services = Service::all();
-        $schedules = Schedule::with('barber')->get();
+        $schedules = Schedule::where('is_avaliable', 1)->get();
 
         return view('auth.admin.appointment.create', compact('clients', 'barbers', 'services', 'schedules'));
     }
@@ -37,18 +37,27 @@ class AppointmentsController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'user_id' => 'required|exists:users,id',
-            'barber_id' => 'required|exists:users,id',
+        
+        $data = $request->validate([
+            'client_id' => 'required|exists:users,id',
+            'barber_id' => 'required|exists:barbers,id',
             'service_id' => 'required|exists:services,id',
-            'schedule_id' => 'required|exists:schedule,id',
-            'is_avaliable' => 'required|boolean',
-            'status' => 'required',
+            'schedule_id' => 'required|exists:schedules,id',
         ]);
 
-        dd($request->all());
-
-        Appointment::create($request->all());
+        
+        Appointment::create([
+            'user_id' => $data['client_id'],
+            'barber_id' => $data['barber_id'],
+            'service_id' => $data['service_id'],
+            'schedule_id' => $data['schedule_id'],
+            'status' => 'pending'
+        ]);
+        
+        Schedule::where('id', $data['schedule_id'])
+            ->update(['is_avaliable' => 0]);
+        
+        
 
         return redirect()->route('appointments.index')->with('success', 'Appointment created successfully.');
     }

@@ -341,20 +341,20 @@ return [
             'can' => ['isAdmin', 'isBarber'],
         ],
         
-        ['header' => 'Services'],
+        ['header' => 'services'],
         [
-            'text' => 'Services',
+            'text' => 'services',
             'url' => 'services',
             'icon' => 'fas fa-fw fa-cogs',
             'can' => 'isAdmin',
         ],
         [
-            'text' => 'Appointments',
+            'text' => 'appointments',
             'url' => 'appointments',
             'icon' => 'fas fa-fw fa-calendar',
         ],
         [
-            'text' => 'Schedules',
+            'text' => 'schedules',
             'url' => 'schedules',
             'icon' => 'fas fa-fw fa-calendar',
         ]

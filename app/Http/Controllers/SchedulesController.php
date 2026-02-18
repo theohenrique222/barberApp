@@ -17,7 +17,7 @@ class SchedulesController extends Controller
             'Data',
             'Início',
             'Fim',
-            'Disponibilidade',
+            'Agendamentos',
             'Actions',
         ];
     

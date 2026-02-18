@@ -18,20 +18,20 @@
 <x-adminlte-datatable id="table2" :heads="$heads" head-theme="dark" striped hoverable bordered>
     <div class="card mb-4">
             <div class="card-body">
-                <h1 class="card-title">Barbeiro: <strong>{{ $barber->user->name }}</strong></h1>
                 @if($barber->schedules->isEmpty())
-                    <p>Nenhum horário disponível.</p>
+                <p>Nenhum horário disponível.</p>
                 @else
+                    <h1 class="card-title">Barbeiro: <strong>{{ $barber->user->name }}</strong></h1>
                     @foreach($barber->schedules as $schedule)
                         <tr>
                             <td>{{ $schedule->date->format('d/m/Y') }}</td>
                             <td>{{ ($schedule->start_time)->format('H:i') }}</td>
                             <td>{{ ($schedule->end_time)->format('H:i') }}</td>
                             <td>
-                                @if($schedule->is_available)
-                                    <span class="badge badge-danger">Não</span>
-                                @else
+                                @if($schedule->is_avaliable === 0)
                                     <span class="badge badge-success">Sim</span>
+                                @else
+                                    <span class="badge badge-danger">Não</span>
                                 @endif
                             </td>
                             <td>

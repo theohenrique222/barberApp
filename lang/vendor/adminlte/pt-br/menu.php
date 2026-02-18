@@ -16,4 +16,13 @@ return [
     'Important' => 'Importante',
     'Warning' => 'Aviso',
     'Information' => 'Informação',
+    'users' => 'Usuários',
+    'barbers' => 'Barbeiros',
+    'services' => 'Serviços',
+    'appointments' => 'Agendamentos',
+    'reports' => 'Relatórios',
+    'schedules' => 'Horários',
+    'clients' => 'Clientes',
+    'appointment' => 'Tipos de Agendamento',
+    'dashboard' => 'Painel de Controle',
 ];

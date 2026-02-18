@@ -34,9 +34,9 @@
         </select>
     </div>
     <div class="form-group">
-        <x-adminlte-select name="is_avaliable" label="Horários Disponíveis">
+        <x-adminlte-select name="schedule_id" label="Horários Disponíveis">
             @foreach ($schedules as $schedule)
-                <option value="1">{{ $schedule->start_time->format('H:i') }}</option>
+                <option value="{{ $schedule->id }}">{{ $schedule->start_time->format('H:i') }}</option>
             @endforeach
         </x-adminlte-select>
     </div>
