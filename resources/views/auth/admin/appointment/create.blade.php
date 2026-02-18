@@ -44,3 +44,26 @@
 </form>
 
 @stop
+@section('js')
+<script>
+    document.querySelector('[name="barber_id"]').addEventListener('change', function () {
+        const barberId = this.value;
+        fetch(`/api/schedules/by-barber/${barberId}`)
+            .then(response => response.json())
+            .then(data => {
+
+                let select = document.querySelector('[name="schedule_id"]');
+                select.innerHTML = '';
+
+                data.forEach(schedule => {
+                    let option = document.createElement('option');
+                    option.value = schedule.id;
+                    option.text = schedule.start_time.substring(0, 5);
+                    select.appendChild(option);
+                });
+                
+            })
+            .catch(error => console.error('Erro ao buscar horários:', error));
+    });
+</script>
+@stop
