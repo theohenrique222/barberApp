@@ -29,9 +29,9 @@
                             <td>{{ ($schedule->end_time)->format('H:i') }}</td>
                             <td>
                                 @if($schedule->is_available)
-                                    <span class="badge badge-success">Sim</span>
-                                @else
                                     <span class="badge badge-danger">Não</span>
+                                @else
+                                    <span class="badge badge-success">Sim</span>
                                 @endif
                             </td>
                             <td>

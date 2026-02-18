@@ -8,7 +8,8 @@
 
 @section('content')
 
-<form action="{{ route('schedules.store') }}" method="post">
+<form action="{{ route('schedules.update', $schedule->id) }}" method="post">
+    @method('PUT')
     @csrf
     <div class="form-group">
         <x-adminlte-select name="barber_id" label="Barbeiro">

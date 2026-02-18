@@ -104,7 +104,22 @@ class SchedulesController extends Controller
      */
     public function update(Request $request, Schedule $schedule)
     {
-        //
+        $request->validate([
+            'barber_id' => 'required',
+            'date' => 'required|date',
+            'start_time' => 'required',
+            'end_time' => 'required|after:start_time',
+            'interval_minutes' => 'required|integer|min:1',
+        ]);
+
+        $schedule->update([
+            'barber_id' => $request->barber_id,
+            'date' => $request->date,
+            'start_time' => $request->start_time,
+            'end_time' => $request->end_time,
+        ]);
+
+        return redirect()->route('schedules.index')->with('success', 'Horário atualizado com sucesso!');
     }
 
     /**
@@ -112,6 +127,7 @@ class SchedulesController extends Controller
      */
     public function destroy(Schedule $schedule)
     {
-        //
+        $schedule->delete();
+        return redirect()->route('schedules.index')->with('success', 'Horário deletado com sucesso!');
     }
 }
