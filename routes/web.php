@@ -17,6 +17,7 @@ Route::middleware(['auth'])->group(function () {
         return view('auth.admin.dashboard');
     })->name('dashboard');
     Route::get('/clients', ClientsController::class, 'index')->name('clients');
+    Route::get('schedules/by-barber/{barber}', [SchedulesController::class, 'byBarber'])->name('schedules.byBarber');
     Route::resource('users', UserController::class);
     Route::resource('services', ServicesController::class);
     Route::resource('barbers', BarbersController::class);

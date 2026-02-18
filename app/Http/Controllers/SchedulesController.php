@@ -36,6 +36,16 @@ class SchedulesController extends Controller
         return view('auth.admin.schedules.index', compact('barbers', 'heads'));
     }
 
+   public function byBarber(Barber $barber)
+{
+    $schedules = Schedule::where('barber_id', $barber->id)
+        ->where('is_avaliable', 1)
+        ->orderBy('start_time')
+        ->get();
+
+    return response()->json($schedules);
+}
+
     /**
      * Show the form for creating a new resource.
      */
