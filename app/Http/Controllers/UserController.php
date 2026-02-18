@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Barber;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -60,12 +61,18 @@ class UserController extends Controller
             'role' => 'required|string|in:admin,client,barber',
         ]);
 
-        User::create([
+        $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => bcrypt($request->password),
             'role' => $request->role,
         ]);
+        
+        if ($request->role === 'barber') {
+            Barber::create([
+                'user_id' => $user->id,
+            ]);
+        }
 
         return redirect()->route('users.index')->with('success', 'Usuário criado com sucesso!');
     }
