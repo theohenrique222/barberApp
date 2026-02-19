@@ -33,11 +33,6 @@
         border-bottom: 1px solid #333;
     }
 
-    .table-dark-custom {
-        background: #1c1c1c;
-        color: #f5f5f5;
-    }
-
     .dataTables_wrapper .dataTables_filter input {
         background: #1c1c1c;
         border: 1px solid #333;
