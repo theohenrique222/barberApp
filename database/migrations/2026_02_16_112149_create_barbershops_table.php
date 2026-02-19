@@ -13,6 +13,19 @@ return new class extends Migration
     {
         Schema::create('barbershops', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
+            $table->string('name');
+            $table->string('slug')->unique();
+            $table->text('description')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('email')->nullable();
+            $table->string('address');
+            $table->string('logo')->nullable();
+            $table->string('cover_image')->nullable();
+            $table->string('city')->nullable();
+            $table->string('state')->nullable();
+            $table->string('zip_code')->nullable();
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
         });
     }

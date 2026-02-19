@@ -321,6 +321,12 @@ return [
             'icon' => 'fas fa-fw fa-tachometer-alt',
 
         ],
+        [
+            'text' => 'barbershops',
+            'url' => 'barbershops',
+            'icon' => 'fas fa-fw fa-store',
+            'can' => ['isAdmin', 'isBarber'],
+        ],
         ['header' => 'account_settings'],
         [
             'text' => 'users',

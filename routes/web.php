@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BarbershopsController;
 use App\Http\Controllers\ClientsController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AppointmentsController;
@@ -23,4 +24,5 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('barbers', BarbersController::class);
     Route::resource('appointments', AppointmentsController::class);
     Route::resource('schedules', SchedulesController::class);
+    Route::resource('barbershops', BarbershopsController::class);
 });

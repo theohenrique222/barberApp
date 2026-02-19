@@ -25,4 +25,5 @@ return [
     'clients' => 'Clientes',
     'appointment' => 'Tipos de Agendamento',
     'dashboard' => 'Painel de Controle',
+    'barbershops' => 'Barbearia',
 ];

@@ -12,7 +12,9 @@ class BarbershopsController extends Controller
      */
     public function index()
     {
-        //
+        $barbershops = Barbershop::all();
+        
+        return view('auth.admin.barbershops.index', compact('barbershops'));
     }
 
     /**
