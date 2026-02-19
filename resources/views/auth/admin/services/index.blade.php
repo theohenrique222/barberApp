@@ -1,7 +1,6 @@
 @extends('adminlte::page')
-
+@section('plugins.Datatables', true)
 @section('title', 'Serviços')
-
 @section('content_header')
 <h1>Serviços</h1>
 @stop
@@ -14,13 +13,10 @@
     </a>
 </div>
 
-@php
-    
-@endphp
 
 <x-adminlte-datatable id="table2" :heads="$heads" head-theme="dark" :config="$config" striped hoverable bordered>
     @foreach($services as $service)
-        <tr>
+    <tr>
             <td>{{ $service->id }}</td>
             <td>{{ $service->name }}</td>
             <td>{{ number_format($service->price, 2, ',', '.') }}</td>
@@ -42,6 +38,5 @@
             </tr>
         @endforeach
 </x-adminlte-datatable>
-
 
 @stop

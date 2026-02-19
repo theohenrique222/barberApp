@@ -29,7 +29,7 @@
         <x-adminlte-input name="end_time" label="Final de Expediente" type="time"/>
     </div>
     <div class="form-group">
-        <x-adminlte-input name="interval_minutes" label="Intervalo entre horários" type="number" value="30"/>
+        <x-adminlte-input name="interval_minutes" label="Intervalo entre horários" type="number" value="60"/>
     </div>
 
     <x-adminlte-button type="submit" label="Salvar" theme="success" icon="fas fa-thumbs-up"/>
