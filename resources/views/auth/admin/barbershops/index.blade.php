@@ -8,7 +8,7 @@
 
 @section('content')
 
-    @if ($barbershops->name->isEmpty())
+    @if ($barbershop->isEmpty())
         <div class="alert alert-warning" role="alert">
             <strong>Aviso!</strong> Nenhuma barbearia cadastrada.
         </div>
@@ -18,12 +18,11 @@
         </div>
         
     @endif
-    <p>Bem-vindo à página de barbearias.</p>
 
 
     <div class="text-center my-3">
         <a href="{{ route('barbershops.create') }}">
-            <x-adminlte-button label="Adicionar Barbearia" theme="success" class="btn-flat" icon="fas fa-lg fa-plus" />
+            <x-adminlte-button label="Cadastrar Barbearia" theme="success" class="btn-flat" icon="fas fa-lg fa-plus" />
         </a>
     </div>
 
