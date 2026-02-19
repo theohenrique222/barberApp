@@ -1,65 +1,101 @@
 @extends('adminlte::page')
-@section('content_header')
-@section('title', 'Horários')
-<h1>Horários Disponíveis</h1>
+@section('css')
+<style>
+    .card-barber-clean {
+        background: #fff;
+        border-radius: 10px;
+        border: 1px solid #e5e5e5;
+    }
+
+    .btn-barber {
+        background: #d4af37;
+        color: #000;
+        font-weight: 600;
+        border-radius: 6px;
+    }
+
+</style>
 @stop
+
+@section('title', 'Horários')
+
+@section('content_header')
+<h1 class="font-weight-bold">Horários Disponíveis</h1>
+@stop
+
 @section('content')
-<h1>Disponibilidades</h1>
 
 @foreach($barbers as $barber)
 
-    <x-adminlte-datatable id="table2" :heads="$heads" head-theme="dark" striped hoverable bordered>
-        <div class="card mb-4">
-            <div class="card-body">
-                <div>
-                    @if ($barber->schedules->isEmpty())
-                        <div class="alert alert-warning" role="alert">
-                            <strong>Aviso!</strong> Nenhum horário cadastrado para o barbeiro: 
-                            <strong>{{ $barber->user->name }}</strong>
-                        </div>
-                        <div class="text-center my-3">
-                            <a href="{{ route('schedules.create') }}">
-                                <x-adminlte-button label="Cadastrar Horário" theme="success" class="btn-flat" icon="fas fa-lg fa-save" />
-                            </a>
-                        </div>
-                        @else
-                        <div class="alert alert-info" role="alert">
-                            <strong>Agendamentos Disponiveis</strong> Horários cadastrados para o barbeiro: 
-                            <strong>{{ $barber->user->name }}</strong>
-                        </div>
-                        @endif
-                </div>
-                @foreach($barber->schedules as $schedule)
-                    <tr>
-                        <td>{{ $schedule->date->format('d/m/Y') }}</td>
-                        <td>{{ ($schedule->start_time)->format('H:i') }}</td>
-                        <td>{{ ($schedule->end_time)->format('H:i') }}</td>
-                        <td>
-                            @if($schedule->is_avaliable === 0)
-                                <span class="badge badge-success">Sim</span>
-                            @else
-                                <span class="badge badge-danger">Não</span>
-                            @endif
-                        </td>
-                        <td>
-                            <a href="{{ route('schedules.edit', $schedule->id) }}"
-                                class="btn btn-xs btn-default text-primary mx-1 shadow" title="Edit">
-                                <i class="fa fa-lg fa-fw fa-pen"></i>
-                            </a>
-                            <form action="{{ route('schedules.destroy', $schedule->id) }}" method="POST"
-                                style="display:inline-block;">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-xs btn-default text-danger mx-1 shadow" title="Delete">
-                                    <i class="fa fa-lg fa-fw fa-trash"></i>
-                                </button>
-                            </form>
-                        </td>
-                    </tr>
-                @endforeach
-            </div>
+    <div class="card card-barber-clean mb-4 bg-dark">
+
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">
+                {{ $barber->user->name }}
+            </h5>
+
+            <a href="{{ route('schedules.create') }}" class="btn btn-sm btn-barber">
+                <i class="fas fa-plus mr-1"></i> Novo horário
+            </a>
         </div>
-    </x-adminlte-datatable>
+
+        <div class="card-body">
+
+            @if ($barber->schedules->isEmpty())
+
+                <div class="alert alert-warning mb-0">
+                    Nenhum horário cadastrado para este barbeiro.
+                </div>
+
+            @else
+
+                <x-adminlte-datatable id="table{{ $barber->id }}" :heads="$heads" head-theme="dark" striped hoverable bordered
+                    class="table-dark-custom">
+
+                    @foreach($barber->schedules as $schedule)
+                        <tr>
+                            <td>{{ $schedule->date->format('d/m/Y') }}</td>
+
+                            <td>{{ $schedule->start_time->format('H:i') }}</td>
+
+                            <td>{{ $schedule->end_time->format('H:i') }}</td>
+
+                            <td>
+                                @if($schedule->is_avaliable == 0)
+                                    <span class="badge badge-success">Disponível</span>
+                                @else
+                                    <span class="badge badge-danger">Indisponível</span>
+                                @endif
+                            </td>
+
+                            <td>
+
+                                <a href="{{ route('schedules.edit', $schedule->id) }}" class="btn btn-sm btn-barber mx-1">
+                                    <i class="fa fa-pen"></i>
+                                </a>
+
+                                <form action="{{ route('schedules.destroy', $schedule->id) }}" method="POST"
+                                    style="display:inline-block;">
+                                    @csrf
+                                    @method('DELETE')
+
+                                    <button type="submit" class="btn btn-sm btn-danger mx-1">
+                                        <i class="fa fa-trash"></i>
+                                    </button>
+                                </form>
+
+                            </td>
+                        </tr>
+                    @endforeach
+
+                </x-adminlte-datatable>
+
+            @endif
+
+        </div>
+
+    </div>
+
 @endforeach
 
 @stop
