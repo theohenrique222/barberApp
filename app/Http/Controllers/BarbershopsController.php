@@ -13,9 +13,9 @@ class BarbershopsController extends Controller
      */
     public function index()
     {
-        $barbershop = Barbershop::all();
+        $barbershops = Barbershop::all();
 
-        return view('auth.admin.barbershops.index', compact('barbershop'));
+        return view('auth.admin.barbershops.index', compact('barbershops'));
     }
 
     /**
@@ -92,6 +92,7 @@ class BarbershopsController extends Controller
      */
     public function destroy(Barbershop $barbershop)
     {
-        //
+        Barbershop::destroy($barbershop->id);
+        return redirect()->route('barbershops.index')->with('success', 'Barbershop deleted successfully.');
     }
 }
