@@ -8,7 +8,7 @@
 
 @section('content')
 
-<form action="{{ route('barbershops.store') }}" method="post">
+<form action="{{ route('barbershops.store') }}" method="post" enctype="multipart/form-data">
     @csrf
     <div class="card card-outline card-primary">
         <div class="card-header">
@@ -54,10 +54,30 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-md-6">
-                    <x-adminlte-input-file name="logo" label="Logo"/>
+                    <label for="logo" class="font-weight-bold">Logo</label>
+                
+                    <div class="border rounded p-3 text-center">
+                        <input type="file" name="logo" id="logo" class="d-none">
+                        <label for="logo" class="btn btn-outline-primary">
+                            Selecionar Logo
+                        </label>
+                
+                        <p class="text-muted mt-2 mb-0">
+                            PNG ou JPG até 2MB
+                        </p>
+                    </div>
                 </div>
                 <div class="col-md-6">
-                    <x-adminlte-input-file name="cover_image" label="Capa"/>
+                    <label for="cover_image" class="font-weight-bold">Imagem da Capa</label>
+                    <div class="border rounded p-3 text-center">
+                        <input type="file" name="cover_image" id="cover_image" class="d-none">
+                        <label for="cover_image" class="btn btn-outline-primary">
+                            Selecionar Capa
+                        </label>
+                        <p class="text-muted mt-2 mb-0">
+                            PNG ou JPG até 2MB
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -106,3 +126,11 @@
 </form>
 
 @stop
+
+{{-- @section('js')
+<script>
+    $(document).ready(function () {
+        bsCustomFileInput.init();
+    });
+</script>
+@stop --}}

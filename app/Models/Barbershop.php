@@ -31,11 +31,13 @@ class Barbershop extends Model
         'name',
         'slug',
         'description',
+        'logo',
+        'cover_image',
         'phone',
         'email',
-        'address',
-        'city',
-        'state',
         'zip_code',
+        'address',
+        'state',
+        'city',
     ];
 }
