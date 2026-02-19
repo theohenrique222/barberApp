@@ -30,7 +30,32 @@ class BarbershopsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'slug' => 'nullable|string|max:255|unique:barbershops,slug',
+            'description' => 'nullable|string',
+            'phone' => 'nullable|string|max:20',
+            'email' => 'nullable|email|max:255',
+            'address' => 'nullable|string|max:255',
+            'city' => 'nullable|string|max:100',
+            'state' => 'nullable|string|max:100',
+            'zip_code' => 'nullable|string|max:20',
+        ]);
+
+        Barbershop::create([
+            'user_id' => auth()->id(),
+            'name' => $request->name,
+            'slug' => $request->slug,
+            'description' => $request->description,
+            'phone' => $request->phone,
+            'email' => $request->email,
+            'address' => $request->address,
+            'city' => $request->city,
+            'state' => $request->state,
+            'zip_code' => $request->zip_code,
+        ]);
+
+        return redirect()->route('barbershops.index')->with('success', 'Barbershop created successfully.');
     }
 
     /**

@@ -27,15 +27,15 @@ class Barbershop extends Model
         return $this->hasMany(Appointment::class);
     }
     protected $fillable = [
+        'user_id',
         'name',
-        'address',
+        'slug',
+        'description',
         'phone',
         'email',
-        'user_id',
-        'logo',
-        'cover_image',
+        'address',
         'city',
         'state',
-        'zip_code'
+        'zip_code',
     ];
 }
