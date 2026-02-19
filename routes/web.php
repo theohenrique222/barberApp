@@ -17,7 +17,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', function () {
         return view('auth.admin.dashboard');
     })->name('dashboard');
-    Route::get('/clients', [ClientsController::class, 'index'])
+    Route::get('/clients', ClientsController::class)
         ->name('clients');
     Route::resource('users', UserController::class);
     Route::resource('services', ServicesController::class);
