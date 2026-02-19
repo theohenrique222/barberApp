@@ -29,4 +29,8 @@ class Appointment extends Model
     {
         return $this->belongsTo(Schedule::class);
     }
+    public function client()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

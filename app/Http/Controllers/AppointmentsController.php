@@ -16,7 +16,8 @@ class AppointmentsController extends Controller
      */
     public function index()
     {
-        return view('auth.admin.appointment.index');
+        $appointments = Appointment::with(['client', 'barber', 'service', 'schedule'])->get();
+        return view('auth.admin.appointment.index', compact('appointments'));
     }
 
     /**
